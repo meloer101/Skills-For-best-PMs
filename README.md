@@ -271,4 +271,4 @@ skill-name/
    ```
 3. 在真实任务中测试，根据使用体验调整
 
-> 这套 Skills 本身就是用 [skill-creator](https://github.com/openai/skills) 构建的。
+> 这套 Skills 本身就是真人以及 [skill-creator](https://github.com/openai/skills) 协作构建的。
