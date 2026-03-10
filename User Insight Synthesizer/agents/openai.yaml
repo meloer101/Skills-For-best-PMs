@@ -1,0 +1,6 @@
+interface:
+  display_name: "User Insight Synthesizer"
+  short_description: "Turn raw user data into evidence-backed insights"
+  default_prompt: "Use $user-insight-synthesizer to analyze my user data and produce a User Insight Report: run the 5-stage thematic analysis workflow (Data Intake → Signal Extraction → Pattern Clustering → Insight Generation → Opportunity Detection), ask clarifying questions before analyzing, and make sure every insight is evidence-anchored."
+policy:
+  allow_implicit_invocation: true
