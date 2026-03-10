@@ -1,0 +1,7 @@
+interface:
+  display_name: "Problem Discovery Engine"
+  short_description: "Turn ideas into validated Problem Briefs"
+  default_prompt: "Use $problem-discovery-engine to turn this idea into a Problem Discovery Brief and a Hypothesis Ledger; run the 6-stage workflow and ask questions before proposing solutions."
+policy:
+  allow_implicit_invocation: true
+
