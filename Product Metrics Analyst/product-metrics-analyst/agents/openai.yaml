@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Metrics Analyst"
+  short_description: "Turn launch data into insights"
+  default_prompt: "Use $product-metrics-analyst to analyze post-launch metrics and produce a Product Performance Insight Report."

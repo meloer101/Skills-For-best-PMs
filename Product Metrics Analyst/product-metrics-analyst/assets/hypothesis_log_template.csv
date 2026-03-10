@@ -1,0 +1,4 @@
+observation,hypothesis,supporting_signals,confidence,test
+Retention dropped in week 2,Onboarding is too complex,"Higher drop-off in step 2; low feature adoption",Medium,Test simplified onboarding flow
+Conversion spiked in segment A,Campaign messaging resonated,"Segment A traffic increased; higher CTR",Low,Test messaging variation in other segments
+

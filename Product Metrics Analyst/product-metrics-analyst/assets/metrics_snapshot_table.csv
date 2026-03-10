@@ -1,0 +1,7 @@
+metric,current_value,baseline_value,delta,segment_or_slice
+DAU,,,,All
+MAU,,,,All
+Activation rate,,,,New users
+Conversion rate,,,,All
+Retention (Week 1),,,,New users
+
