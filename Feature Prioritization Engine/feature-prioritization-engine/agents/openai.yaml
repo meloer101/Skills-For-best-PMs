@@ -1,0 +1,4 @@
+interface:
+  display_name: "Feature Prioritization Engine"
+  short_description: "Turn backlog into ranked roadmap"
+  default_prompt: "Use $feature-prioritization-engine to score and rank these features, then output a Prioritized Feature Roadmap."
