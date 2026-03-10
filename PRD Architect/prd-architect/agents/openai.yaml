@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD Architect"
+  short_description: "Turn ideas into executable PRDs"
+  default_prompt: "Use $prd-architect to draft a concise PRD with requirements, edge cases, and success metrics."

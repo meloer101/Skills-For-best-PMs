@@ -1,0 +1,5 @@
+metric,definition,target,data_source
+Adoption rate,Percent of eligible users using the feature within 30 days,,
+Task completion time,Median time to complete the primary task,,
+Error rate,Percent of failed attempts,,
+
