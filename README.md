@@ -20,7 +20,7 @@
 
 ## Skills 地图
 
-这五个 Skill 覆盖产品工作的完整闭环：
+### 产品工作流（5 个 Skill，覆盖完整闭环）
 
 ```
 模糊想法
@@ -52,6 +52,20 @@
     │
     ▼
 （进入下一个发现周期）
+```
+
+### 工程理解（1 个 Skill）
+
+```
+任意代码库
+    │
+    ▼
+┌─────────────────────────────┐
+│    Project Intelligence     │  把代码库 → 系统架构 + 核心模块 + 数据流 + 复杂度地图
+└─────────────────────────────┘
+    │
+    ▼
+Project Intelligence Report（开发者 / PM / 架构三种视角）
 ```
 
 每个 Skill 可以独立触发，也可以串联使用。
@@ -160,6 +174,7 @@ ln -s "/Users/m/Documents/Skills/User Insight Synthesizer" ~/.codex/skills/user-
 ln -s "/Users/m/Documents/Skills/Feature Prioritization Engine/feature-prioritization-engine" ~/.codex/skills/feature-prioritization-engine
 ln -s "/Users/m/Documents/Skills/PRD Architect/prd-architect" ~/.codex/skills/prd-architect
 ln -s "/Users/m/Documents/Skills/Product Metrics Analyst/product-metrics-analyst" ~/.codex/skills/product-metrics-analyst
+ln -s "/Users/m/Documents/Skills/项目理解引擎/project-intelligence" ~/.codex/skills/project-intelligence
 ```
 
 安装后**重启 Codex**，Skill 即生效。
@@ -179,6 +194,7 @@ ln -s "/Users/m/Documents/Skills/User Insight Synthesizer" ~/.cursor/skills/user
 ln -s "/Users/m/Documents/Skills/Feature Prioritization Engine/feature-prioritization-engine" ~/.cursor/skills/feature-prioritization-engine
 ln -s "/Users/m/Documents/Skills/PRD Architect/prd-architect" ~/.cursor/skills/prd-architect
 ln -s "/Users/m/Documents/Skills/Product Metrics Analyst/product-metrics-analyst" ~/.cursor/skills/product-metrics-analyst
+ln -s "/Users/m/Documents/Skills/项目理解引擎/project-intelligence" ~/.cursor/skills/project-intelligence
 ```
 
 Cursor 会自动读取 `~/.cursor/skills/` 目录，无需重启。
@@ -215,6 +231,24 @@ Cursor 会自动读取 `~/.cursor/skills/` 目录，无需重启。
 
 ---
 
+### 6. Project Intelligence
+
+**解决什么问题**：接手一个新代码库，README 写得很漂亮，但你依然不知道系统怎么运作、数据从哪来、哪个模块是核心、改一行代码会不会炸。
+
+**核心能力**：
+- 自动识别核心模块，并赋予"系统角色"（Orchestrator / Gatekeeper 等）
+- 追踪关键请求流：从用户操作到数据库的完整路径
+- 把代码逻辑翻译成业务叙事（Business Scenarios）
+- 解读数据模型的产品意义
+- 生成复杂度热力图，标注高危文件
+- 输出新人学习路径（Onboarding Path）
+- 支持三种角色视角：Developer / PM / Architecture
+
+**产出物**：
+- `Project Intelligence Report`（含 9 个部分，覆盖架构 / 模块 / 数据流 / 业务场景 / 复杂度 / Onboarding）
+
+---
+
 ## 设计原则
 
 这套 Skills 遵循四个核心设计原则：
@@ -243,8 +277,10 @@ Skills/
 │   └── feature-prioritization-engine/
 ├── PRD Architect/                    # Skill 4：撰写需求文档
 │   └── prd-architect/
-└── Product Metrics Analyst/          # Skill 5：上线数据分析
-    └── product-metrics-analyst/
+├── Product Metrics Analyst/          # Skill 5：上线数据分析
+│   └── product-metrics-analyst/
+└── 项目理解引擎/                      # Skill 6：代码库深度理解
+    └── project-intelligence/
 ```
 
 每个 Skill 目录结构：

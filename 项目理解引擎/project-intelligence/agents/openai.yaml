@@ -1,0 +1,4 @@
+interface:
+  display_name: "Project Intelligence"
+  short_description: "Analyze any codebase and generate a deep Project Intelligence Report"
+  default_prompt: "Use $project-intelligence to analyze this codebase and generate a full Project Intelligence Report."
