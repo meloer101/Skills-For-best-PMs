@@ -161,45 +161,187 @@ Project Intelligence Report（开发者 / PM / 架构三种视角）
 
 ---
 
+### 6. Project Intelligence
+
+**解决什么问题**：接手一个新代码库，README 写得很漂亮，但你依然不知道系统怎么运作、数据从哪来、哪个模块是核心、改一行代码会不会炸。
+
+**核心能力**：
+- 自动识别核心模块，并赋予"系统角色"（Orchestrator / Gatekeeper 等）
+- 追踪关键请求流：从用户操作到数据库的完整路径
+- 把代码逻辑翻译成业务叙事（Business Scenarios）
+- 解读数据模型的产品意义
+- 生成复杂度热力图，标注高危文件
+- 输出新人学习路径（Onboarding Path）
+- 支持三种角色视角：Developer / PM / Architecture
+
+**产出物**：
+- `Project Intelligence Report`（含 9 个部分，覆盖架构 / 模块 / 数据流 / 业务场景 / 复杂度 / Onboarding）
+
+---
+
 ## 如何使用
 
-### 在 Codex 中使用
+这套 Skills 需要安装到 AI 工具中才能生效。目前支持两个工具：**Cursor**（AI 代码编辑器）和 **Codex**（OpenAI 命令行 Agent）。按照你正在使用的工具选择对应流程。
 
-把任意 Skill 文件夹安装到 Codex 的 skill 目录（文件夹名须与 `SKILL.md` 中的 `name` 一致）：
+> **系统要求**：macOS 或 Linux。Windows 用户请参考文末说明。
+
+---
+
+### 第一步：下载这个仓库
+
+打开终端，把仓库克隆到本地：
 
 ```bash
-# 以符号链接方式安装（修改后实时生效，推荐）
-ln -s "/Users/m/Documents/Skills/Problem Discovery Engine" ~/.codex/skills/problem-discovery-engine
-ln -s "/Users/m/Documents/Skills/User Insight Synthesizer" ~/.codex/skills/user-insight-synthesizer
-ln -s "/Users/m/Documents/Skills/Feature Prioritization Engine/feature-prioritization-engine" ~/.codex/skills/feature-prioritization-engine
-ln -s "/Users/m/Documents/Skills/PRD Architect/prd-architect" ~/.codex/skills/prd-architect
-ln -s "/Users/m/Documents/Skills/Product Metrics Analyst/product-metrics-analyst" ~/.codex/skills/product-metrics-analyst
-ln -s "/Users/m/Documents/Skills/项目理解引擎/project-intelligence" ~/.codex/skills/project-intelligence
+git clone https://github.com/<仓库地址> ~/Documents/Skills
 ```
 
-安装后**重启 Codex**，Skill 即生效。
+> 如果你不熟悉 Git，也可以点击 GitHub 页面右上角的 **Code → Download ZIP**，解压后放到你喜欢的位置（记住这个路径，后续步骤会用到）。
 
-**触发方式**：直接描述你的任务，Codex 会自动匹配触发对应 Skill；或者在对话中明确说明，例如：
+克隆完成后，进入目录确认文件存在：
 
-> 「用 problem-discovery-engine 帮我分析这个需求」
+```bash
+ls ~/Documents/Skills
+```
 
-### 在 Cursor 中使用
+你应该能看到 `Problem Discovery Engine`、`Feature Prioritization Engine` 等文件夹。
 
-把 Skill 文件夹安装到 Cursor 的个人 skill 目录（适用于所有项目）：
+---
+
+### 第二步：选择你的 AI 工具
+
+#### 方案 A：在 Cursor 中使用（推荐）
+
+**Cursor** 是一款内置 AI Agent 的代码编辑器。Skills 安装后，在任意项目的对话中均可自动触发。
+
+**2A-1：确认已安装 Cursor**
+
+前往 [cursor.com](https://cursor.com) 下载并安装。打开后确认可以正常启动。
+
+**2A-2：创建个人 Skills 目录**
+
+Cursor 会从 `~/.cursor/skills/` 目录中自动加载 Skills。先创建这个目录：
 
 ```bash
 mkdir -p ~/.cursor/skills
-ln -s "/Users/m/Documents/Skills/Problem Discovery Engine" ~/.cursor/skills/problem-discovery-engine
-ln -s "/Users/m/Documents/Skills/User Insight Synthesizer" ~/.cursor/skills/user-insight-synthesizer
-ln -s "/Users/m/Documents/Skills/Feature Prioritization Engine/feature-prioritization-engine" ~/.cursor/skills/feature-prioritization-engine
-ln -s "/Users/m/Documents/Skills/PRD Architect/prd-architect" ~/.cursor/skills/prd-architect
-ln -s "/Users/m/Documents/Skills/Product Metrics Analyst/product-metrics-analyst" ~/.cursor/skills/product-metrics-analyst
-ln -s "/Users/m/Documents/Skills/项目理解引擎/project-intelligence" ~/.cursor/skills/project-intelligence
 ```
 
-Cursor 会自动读取 `~/.cursor/skills/` 目录，无需重启。
+> `~` 是你的用户主目录的简写（macOS 上通常是 `/Users/你的用户名`）。`-p` 表示如果目录已存在也不报错。
 
-> 注意：不要将文件放入 `~/.cursor/skills-cursor/`，该目录为 Cursor 内置系统目录。
+**2A-3：安装 Skills（创建符号链接）**
+
+符号链接（symlink）相当于一个"快捷方式"——它让 Cursor 能读取到仓库里的文件，同时你在仓库中做的任何修改会立即生效，无需重新安装。
+
+> ⚠️ **注意**：如果你把仓库克隆到了其他位置，请把下面命令中的 `~/Documents/Skills` 替换成你实际的路径。
+
+```bash
+# 安装全部 6 个 Skills
+ln -s ~/Documents/Skills/Problem\ Discovery\ Engine/problem-discovery-engine         ~/.cursor/skills/problem-discovery-engine
+ln -s ~/Documents/Skills/User\ Insight\ Synthesizer/user-insight-synthesizer         ~/.cursor/skills/user-insight-synthesizer
+ln -s ~/Documents/Skills/Feature\ Prioritization\ Engine/feature-prioritization-engine ~/.cursor/skills/feature-prioritization-engine
+ln -s ~/Documents/Skills/PRD\ Architect/prd-architect                                ~/.cursor/skills/prd-architect
+ln -s ~/Documents/Skills/Product\ Metrics\ Analyst/product-metrics-analyst           ~/.cursor/skills/product-metrics-analyst
+ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                            ~/.cursor/skills/project-intelligence
+```
+
+也可以只安装你需要的 Skill，每行命令独立可用。
+
+**2A-4：验证安装**
+
+运行以下命令，确认符号链接都已正确创建：
+
+```bash
+ls -la ~/.cursor/skills/
+```
+
+正常输出类似：
+
+```
+lrwxr-xr-x  problem-discovery-engine -> /Users/你的用户名/Documents/Skills/...
+lrwxr-xr-x  feature-prioritization-engine -> ...
+...
+```
+
+每一行开头的 `l` 表示这是一个符号链接，说明安装成功。
+
+**2A-5：在 Cursor 中触发 Skill**
+
+无需重启。打开 Cursor，在任意项目中打开 AI 对话（`Cmd+L` 或右侧 Chat 面板），直接描述你的任务即可：
+
+```
+我有一个需求想法，但还不确定问题是什么，帮我用 problem-discovery-engine 分析一下
+```
+
+```
+这是我们 10 个用户访谈的原始记录，用 user-insight-synthesizer 帮我提炼用户洞察
+```
+
+```
+分析这个代码库，用 project-intelligence 生成一份 Project Intelligence Report
+```
+
+Cursor 会自动读取对应 Skill 的工作流规则，按结构化流程引导你完成任务。
+
+> ⚠️ 不要把文件放入 `~/.cursor/skills-cursor/`，那是 Cursor 的内置系统目录，手动修改会导致异常。
+
+---
+
+#### 方案 B：在 Codex 中使用
+
+**Codex** 是 OpenAI 推出的命令行 AI Agent 工具。
+
+**2B-1：确认已安装 Codex**
+
+```bash
+codex --version
+```
+
+如果提示"命令未找到"，请先参考 [Codex 官方文档](https://github.com/openai/codex) 完成安装。
+
+**2B-2：安装 Skills**
+
+```bash
+mkdir -p ~/.codex/skills
+
+ln -s ~/Documents/Skills/Problem\ Discovery\ Engine/problem-discovery-engine         ~/.codex/skills/problem-discovery-engine
+ln -s ~/Documents/Skills/User\ Insight\ Synthesizer/user-insight-synthesizer         ~/.codex/skills/user-insight-synthesizer
+ln -s ~/Documents/Skills/Feature\ Prioritization\ Engine/feature-prioritization-engine ~/.codex/skills/feature-prioritization-engine
+ln -s ~/Documents/Skills/PRD\ Architect/prd-architect                                ~/.codex/skills/prd-architect
+ln -s ~/Documents/Skills/Product\ Metrics\ Analyst/product-metrics-analyst           ~/.codex/skills/product-metrics-analyst
+ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                            ~/.codex/skills/project-intelligence
+```
+
+**2B-3：重启 Codex**
+
+与 Cursor 不同，Codex 需要**重启**后才会加载新安装的 Skills。
+
+**2B-4：触发 Skill**
+
+启动 Codex 后直接描述任务，它会自动匹配对应 Skill。也可以明确指定：
+
+```
+用 feature-prioritization-engine 帮我对这 6 个功能排优先级
+```
+
+---
+
+### Windows 用户说明
+
+Windows 不支持上述 `ln -s` 符号链接命令。有两种替代方案：
+
+**方案一（推荐）：使用 WSL**
+
+在 WSL（Windows Subsystem for Linux）中操作，命令与上述完全一致。
+
+**方案二：直接复制文件夹**
+
+```powershell
+# 在 PowerShell 中运行（以 Cursor 为例）
+mkdir $env:USERPROFILE\.cursor\skills
+Copy-Item "C:\你的路径\Skills\Feature Prioritization Engine\feature-prioritization-engine" `
+  -Destination "$env:USERPROFILE\.cursor\skills\feature-prioritization-engine" -Recurse
+```
+
+注意：直接复制的文件不会随仓库更新自动同步，需要手动重新复制。
 
 ---
 
@@ -228,24 +370,6 @@ Cursor 会自动读取 `~/.cursor/skills/` 目录，无需重启。
    → Product Metrics Analyst
    → 产出：Performance Insight Report + 下一轮假设与实验建议
 ```
-
----
-
-### 6. Project Intelligence
-
-**解决什么问题**：接手一个新代码库，README 写得很漂亮，但你依然不知道系统怎么运作、数据从哪来、哪个模块是核心、改一行代码会不会炸。
-
-**核心能力**：
-- 自动识别核心模块，并赋予"系统角色"（Orchestrator / Gatekeeper 等）
-- 追踪关键请求流：从用户操作到数据库的完整路径
-- 把代码逻辑翻译成业务叙事（Business Scenarios）
-- 解读数据模型的产品意义
-- 生成复杂度热力图，标注高危文件
-- 输出新人学习路径（Onboarding Path）
-- 支持三种角色视角：Developer / PM / Architecture
-
-**产出物**：
-- `Project Intelligence Report`（含 9 个部分，覆盖架构 / 模块 / 数据流 / 业务场景 / 复杂度 / Onboarding）
 
 ---
 
