@@ -1,7 +1,6 @@
 ---
 name: user-insight-synthesizer
-description: Thematic analysis engine that transforms raw user data (interview transcripts, support tickets, app reviews, community posts, survey responses, behavior logs) into a structured User Insight Report with evidence-anchored insights. Use when a PM or researcher has collected user data and needs to extract behavior patterns, discover user archetypes, uncover hidden motivations, and identify ranked product opportunities. Prevents surface-level summarization by enforcing observation→insight layering and minority-voice tracking. 
-适用于：把大量原始用户声音压缩为可信的用户认知模型，输出可驱动产品决策的 User Insight Report。
+description: Thematic analysis engine that transforms raw user data (interview transcripts, support tickets, app reviews, community posts, survey responses, behavior logs) into a structured User Insight Report with evidence-anchored insights. Use when a PM or researcher has collected user data and needs to extract behavior patterns, discover user archetypes, uncover hidden motivations, and identify ranked product opportunities. Prevents surface-level summarization by enforcing observation→insight layering and minority-voice tracking. 适用于：把大量原始用户声音压缩为可信的用户认知模型，输出可驱动产品决策的 User Insight Report。
 ---
 
 # User Insight Synthesizer
