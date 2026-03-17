@@ -1,0 +1,4 @@
+interface:
+  display_name: "PM Interview Defense System"
+  short_description: "Defensible multi-layer interview answers"
+  default_prompt: "Use -interview-defense-system to build a three-layer, evidence-backed answer system for my interview question."
