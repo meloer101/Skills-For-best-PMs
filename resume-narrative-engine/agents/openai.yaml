@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resume Narrative Engine"
+  short_description: "Translate code into PM resume narratives"
+  default_prompt: "Turn the provided project code and JD into PM-style resume bullets with evidence mapping, narrative selection, and gap detection. Do not invent metrics."
