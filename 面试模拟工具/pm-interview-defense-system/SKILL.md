@@ -63,5 +63,8 @@ Use this structure for each question:
 - `Layer 3 — Follow-up Defense`
 - `Compression Levels` (if requested)
 
+## Output Template
+Use `assets/interview_answer_template.md` as the output skeleton for each question.
+
 ## Reference Template
-Use `/Users/m/Documents/Skills/pm-interview-defense-system/references/answer-system-template.md` for the canonical structure and checklists.
+Use `references/answer-system-template.md` for the canonical structure and checklists.

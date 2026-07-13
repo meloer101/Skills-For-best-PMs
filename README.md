@@ -68,6 +68,20 @@
 Project Intelligence Report（开发者 / PM / 架构三种视角）
 ```
 
+### 求职工具箱（2 个 Skill）
+
+```
+项目经历 + 目标 JD
+    │
+    ├──▶ ┌─────────────────────────────┐
+    │    │  Resume Narrative Engine    │  代码库 + JD → PM 视角简历叙事 + 证据映射
+    │    └─────────────────────────────┘
+    │
+    └──▶ ┌──────────────────────────────────┐
+         │  PM Interview Defense System    │  项目证据 → 三层答案体系（表层/深层/追问防御）
+         └──────────────────────────────────┘
+```
+
 每个 Skill 可以独立触发，也可以串联使用。
 
 ---
@@ -179,9 +193,47 @@ Project Intelligence Report（开发者 / PM / 架构三种视角）
 
 ---
 
+### 7. Resume Narrative Engine
+
+**解决什么问题**：有项目经验但不知道怎么写进简历——工程语言和 PM 语言之间有一道翻译鸿沟。
+
+**核心能力**：
+- 从代码库和项目文档中提取产品信号（Reality Extraction）
+- 解析 JD，构建"理想 PM 人格画像"
+- 信号排序（JD Priority × Signal Strength）
+- 选择叙事策略（0→1 / 系统思考者 / 数据驱动 / AI 原生等）
+- 生成证据支撑的简历 bullets，禁止编造指标
+- Gap 检测：标注缺失信号和建议补充的信息
+
+**产出物**：
+- `Mapping Summary`（人格画像 + 叙事策略 + 信号排序 + Claim Map）
+- `Resume Bullets`（3–5 条/项目，每条附证据）
+- `Missing Signals`（Gap 诊断）
+
+---
+
+### 8. PM Interview Defense System
+
+**解决什么问题**：面试准备只练了"标准答案"，但面试官追问两轮就露馅——缺乏深层逻辑和证据链。
+
+**核心能力**：
+- 从项目文档中提取可验证的证据，构建 Evidence Map
+- 选择展示"决策价值"的 Difficulty（而非单纯技术难度）
+- 构建三层答案体系：
+  - Layer 1 — Surface Answer（30–60 秒结构化叙述）
+  - Layer 2 — Deep Breakdown（约束 / 备选方案 / 取舍 / 失败尝试）
+  - Layer 3 — Follow-up Defense（3–7 个追问 + 可信回应）
+- 强制包含"不完美"（失败尝试 / 不确定性 / 取舍遗憾），防止过度打磨
+- 提供 30 秒 / 2 分钟 / 深度追问三种压缩版本
+
+**产出物**：
+- `Interview Answer System`（Difficulty + Evidence Map + 三层答案 + 压缩版本）
+
+---
+
 ## 如何使用
 
-这套 Skills 需要安装到 AI 工具中才能生效。目前支持两个工具：**Cursor**（AI 代码编辑器）和 **Codex**（OpenAI 命令行 Agent）。按照你正在使用的工具选择对应流程。
+这套 Skills 需要安装到 AI 工具中才能生效。目前支持三个工具：**Cursor**（AI 代码编辑器）、**Codex**（OpenAI 命令行 Agent）和 **Claude Code**（Anthropic 命令行 Agent）。按照你正在使用的工具选择对应流程。
 
 > **系统要求**：macOS 或 Linux。Windows 用户请参考文末说明。
 
@@ -203,7 +255,7 @@ git clone https://github.com/<仓库地址> ~/Documents/Skills
 ls ~/Documents/Skills
 ```
 
-你应该能看到 `Problem Discovery Engine`、`Feature Prioritization Engine` 等文件夹。
+你应该能看到 `问题澄清引擎`、`功能排序引擎`、`简历适配助手` 等文件夹。
 
 ---
 
@@ -234,13 +286,15 @@ mkdir -p ~/.cursor/skills
 > ⚠️ **注意**：如果你把仓库克隆到了其他位置，请把下面命令中的 `~/Documents/Skills` 替换成你实际的路径。
 
 ```bash
-# 安装全部 6 个 Skills
-ln -s ~/Documents/Skills/Problem\ Discovery\ Engine/problem-discovery-engine         ~/.cursor/skills/problem-discovery-engine
-ln -s ~/Documents/Skills/User\ Insight\ Synthesizer/user-insight-synthesizer         ~/.cursor/skills/user-insight-synthesizer
-ln -s ~/Documents/Skills/Feature\ Prioritization\ Engine/feature-prioritization-engine ~/.cursor/skills/feature-prioritization-engine
-ln -s ~/Documents/Skills/PRD\ Architect/prd-architect                                ~/.cursor/skills/prd-architect
-ln -s ~/Documents/Skills/Product\ Metrics\ Analyst/product-metrics-analyst           ~/.cursor/skills/product-metrics-analyst
-ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                            ~/.cursor/skills/project-intelligence
+# 安装全部 8 个 Skills
+ln -s ~/Documents/Skills/问题澄清引擎/problem-discovery-engine             ~/.cursor/skills/problem-discovery-engine
+ln -s ~/Documents/Skills/用户洞察提炼/user-insight-synthesizer             ~/.cursor/skills/user-insight-synthesizer
+ln -s ~/Documents/Skills/功能排序引擎/feature-prioritization-engine         ~/.cursor/skills/feature-prioritization-engine
+ln -s ~/Documents/Skills/PRD架构师/prd-architect                           ~/.cursor/skills/prd-architect
+ln -s ~/Documents/Skills/上线效果分析师/product-metrics-analyst             ~/.cursor/skills/product-metrics-analyst
+ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                  ~/.cursor/skills/project-intelligence
+ln -s ~/Documents/Skills/简历适配助手/resume-narrative-engine               ~/.cursor/skills/resume-narrative-engine
+ln -s ~/Documents/Skills/面试模拟工具/pm-interview-defense-system           ~/.cursor/skills/pm-interview-defense-system
 ```
 
 也可以只安装你需要的 Skill，每行命令独立可用。
@@ -279,6 +333,14 @@ lrwxr-xr-x  feature-prioritization-engine -> ...
 分析这个代码库，用 project-intelligence 生成一份 Project Intelligence Report
 ```
 
+```
+这是我的项目代码和目标 JD，用 resume-narrative-engine 帮我写简历
+```
+
+```
+用 pm-interview-defense-system 帮我准备这道面试题的答案
+```
+
 Cursor 会自动读取对应 Skill 的工作流规则，按结构化流程引导你完成任务。
 
 > ⚠️ 不要把文件放入 `~/.cursor/skills-cursor/`，那是 Cursor 的内置系统目录，手动修改会导致异常。
@@ -302,12 +364,14 @@ codex --version
 ```bash
 mkdir -p ~/.codex/skills
 
-ln -s ~/Documents/Skills/Problem\ Discovery\ Engine/problem-discovery-engine         ~/.codex/skills/problem-discovery-engine
-ln -s ~/Documents/Skills/User\ Insight\ Synthesizer/user-insight-synthesizer         ~/.codex/skills/user-insight-synthesizer
-ln -s ~/Documents/Skills/Feature\ Prioritization\ Engine/feature-prioritization-engine ~/.codex/skills/feature-prioritization-engine
-ln -s ~/Documents/Skills/PRD\ Architect/prd-architect                                ~/.codex/skills/prd-architect
-ln -s ~/Documents/Skills/Product\ Metrics\ Analyst/product-metrics-analyst           ~/.codex/skills/product-metrics-analyst
-ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                            ~/.codex/skills/project-intelligence
+ln -s ~/Documents/Skills/问题澄清引擎/problem-discovery-engine             ~/.codex/skills/problem-discovery-engine
+ln -s ~/Documents/Skills/用户洞察提炼/user-insight-synthesizer             ~/.codex/skills/user-insight-synthesizer
+ln -s ~/Documents/Skills/功能排序引擎/feature-prioritization-engine         ~/.codex/skills/feature-prioritization-engine
+ln -s ~/Documents/Skills/PRD架构师/prd-architect                           ~/.codex/skills/prd-architect
+ln -s ~/Documents/Skills/上线效果分析师/product-metrics-analyst             ~/.codex/skills/product-metrics-analyst
+ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                  ~/.codex/skills/project-intelligence
+ln -s ~/Documents/Skills/简历适配助手/resume-narrative-engine               ~/.codex/skills/resume-narrative-engine
+ln -s ~/Documents/Skills/面试模拟工具/pm-interview-defense-system           ~/.codex/skills/pm-interview-defense-system
 ```
 
 **2B-3：重启 Codex**
@@ -320,6 +384,43 @@ ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                
 
 ```
 用 feature-prioritization-engine 帮我对这 6 个功能排优先级
+```
+
+---
+
+#### 方案 C：在 Claude Code 中使用
+
+**Claude Code** 是 Anthropic 推出的命令行 AI Agent 工具。Skills 的 SKILL.md 格式与 Claude Code 兼容。
+
+**2C-1：确认已安装 Claude Code**
+
+```bash
+claude --version
+```
+
+如果提示"命令未找到"，请先参考 [Claude Code 官方文档](https://docs.anthropic.com/en/docs/claude-code) 完成安装。
+
+**2C-2：安装 Skills**
+
+```bash
+mkdir -p ~/.claude/skills
+
+ln -s ~/Documents/Skills/问题澄清引擎/problem-discovery-engine             ~/.claude/skills/problem-discovery-engine
+ln -s ~/Documents/Skills/用户洞察提炼/user-insight-synthesizer             ~/.claude/skills/user-insight-synthesizer
+ln -s ~/Documents/Skills/功能排序引擎/feature-prioritization-engine         ~/.claude/skills/feature-prioritization-engine
+ln -s ~/Documents/Skills/PRD架构师/prd-architect                           ~/.claude/skills/prd-architect
+ln -s ~/Documents/Skills/上线效果分析师/product-metrics-analyst             ~/.claude/skills/product-metrics-analyst
+ln -s ~/Documents/Skills/项目理解引擎/project-intelligence                  ~/.claude/skills/project-intelligence
+ln -s ~/Documents/Skills/简历适配助手/resume-narrative-engine               ~/.claude/skills/resume-narrative-engine
+ln -s ~/Documents/Skills/面试模拟工具/pm-interview-defense-system           ~/.claude/skills/pm-interview-defense-system
+```
+
+**2C-3：触发 Skill**
+
+无需重启。在任意项目目录中启动 Claude Code，直接描述任务即可：
+
+```
+用 problem-discovery-engine 帮我分析这个需求想法
 ```
 
 ---
@@ -337,7 +438,7 @@ Windows 不支持上述 `ln -s` 符号链接命令。有两种替代方案：
 ```powershell
 # 在 PowerShell 中运行（以 Cursor 为例）
 mkdir $env:USERPROFILE\.cursor\skills
-Copy-Item "C:\你的路径\Skills\Feature Prioritization Engine\feature-prioritization-engine" `
+Copy-Item "C:\你的路径\Skills\功能排序引擎\feature-prioritization-engine" `
   -Destination "$env:USERPROFILE\.cursor\skills\feature-prioritization-engine" -Recurse
 ```
 
@@ -371,6 +472,18 @@ Copy-Item "C:\你的路径\Skills\Feature Prioritization Engine\feature-prioriti
    → 产出：Performance Insight Report + 下一轮假设与实验建议
 ```
 
+**场景：用项目经历准备 PM 求职**
+
+```
+1. 「这是我的项目代码和目标 JD」
+   → Resume Narrative Engine
+   → 产出：Mapping Summary + Resume Bullets + Gap 诊断
+
+2. 「用这个项目准备面试问题」
+   → PM Interview Defense System
+   → 产出：三层答案体系（表层 + 深层 + 追问防御）
+```
+
 ---
 
 ## 设计原则
@@ -395,16 +508,22 @@ Copy-Item "C:\你的路径\Skills\Feature Prioritization Engine\feature-prioriti
 
 ```
 Skills/
-├── Problem Discovery Engine/         # Skill 1：发现 & 定义问题
-├── User Insight Synthesizer/         # Skill 2：用户洞察分析
-├── Feature Prioritization Engine/    # Skill 3：功能排优先级
+├── 问题澄清引擎/                      # Skill 1：发现 & 定义问题
+│   └── problem-discovery-engine/
+├── 用户洞察提炼/                       # Skill 2：用户洞察分析
+│   └── user-insight-synthesizer/
+├── 功能排序引擎/                       # Skill 3：功能排优先级
 │   └── feature-prioritization-engine/
-├── PRD Architect/                    # Skill 4：撰写需求文档
+├── PRD架构师/                          # Skill 4：撰写需求文档
 │   └── prd-architect/
-├── Product Metrics Analyst/          # Skill 5：上线数据分析
+├── 上线效果分析师/                      # Skill 5：上线数据分析
 │   └── product-metrics-analyst/
-└── 项目理解引擎/                      # Skill 6：代码库深度理解
-    └── project-intelligence/
+├── 项目理解引擎/                       # Skill 6：代码库深度理解
+│   └── project-intelligence/
+├── 简历适配助手/                       # Skill 7：PM 简历叙事
+│   └── resume-narrative-engine/
+└── 面试模拟工具/                       # Skill 8：面试答案体系
+    └── pm-interview-defense-system/
 ```
 
 每个 Skill 目录结构：
