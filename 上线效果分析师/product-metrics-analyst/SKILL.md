@@ -18,6 +18,22 @@ Use `assets/metrics_snapshot_table.csv` and `assets/hypothesis_log_template.csv`
 - No dashboard recitation: summarize meaning, not raw numbers.
 - Tag data gaps: explicitly list missing data and how to obtain it.
 - Keep it concise: short bullets, clear actions.
+- **先判噪声再归因**：下任何结论前，先过 `references/anomaly_heuristics.md` 的噪声护栏——分母够不够、有没有超出历史波动带、是否持续 3+ 周期。落在日常波动带内的变化按噪声处理，不强行讲故事。
+- **先排除仪器变更**：把观察归因到用户行为之前，先排除埋点/口径/数据管道变更。
+- **标注置信度**：每个结论带 `Confidence: L/M/H`，Low confidence 的结论不驱动重决策，只驱动"再取数/做实验"。
+
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 2–3 轮提问，每轮 3–5 题；到上限后带显式假设直接产出报告草稿。
+- **两档模式**：
+  - `Express（lite）`：用户直接甩来一份指标截图/表格时，先出"趋势 + 疑似异常 + 待验证假设"的快报，缺的上下文用 `Assumption:` 标注。
+  - `Full`（默认）：走完整 6 个 Stage。
+
+## Upstream Inputs（串联上游）
+
+- **PRD（PRD 架构师）的 Success Metrics**：直接作为本次分析的北极星指标与基线目标，不用重新问"什么算成功"。
+- **Prioritized Roadmap / Problem Brief**：功能当初要解决的问题 = 现在要验证有没有解决。
+- 无上游时从 Stage 1 采集产品目标与主指标。
 
 ## Workflow (6 stages)
 
@@ -97,4 +113,5 @@ Before final output, run the checklist in `references/analysis_checklist.md`.
 - Report template: `assets/insight_report_template.md`
 - Metrics snapshot: `assets/metrics_snapshot_table.csv`
 - Hypothesis log: `assets/hypothesis_log_template.csv`
+- Worked example: `examples/example_insight_report.md`
 

@@ -16,8 +16,22 @@ Produce a `Prioritized Feature Roadmap` using `assets/prioritized_feature_roadma
 - Freeze debate: enforce the same criteria for every item before any ranking.
 - Evidence-first: label assumptions vs evidence; quantify confidence.
 - No magic: every score must have a stated rationale.
-- Small batches: 5 to 8 questions per round.
+- Small batches: 3 to 5 questions per round.
 - Uncertainty-aware: if data is missing, use ranges and tag risks.
+
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 2–3 轮提问；到上限后带显式假设直接出打分与 Roadmap 草稿，低置信项标 `Confidence: Low`。
+- **两档模式**：
+  - `Express（lite）`：功能清单和粗略信息已给全时，直接出打分表 + Top 排序 + Top 3 trade-off，省略逐项追问。
+  - `Full`（默认）：走完整 6 个 Stage。
+
+## Upstream Inputs（串联位置）
+
+优先复用上游产出物，不要让用户重新描述每个功能：
+- **User Insight Report**（用户洞察提炼）：把 `Opportunity Areas` 及其 F/P/SG/SF 打分和 Evidence **直接作为 Stage 1 的候选项和初始证据**，Stage 3 打分时继承而非重估。
+- **Problem Discovery Brief**（问题澄清引擎）：Pain Points 排序 → User Value 打分依据；Root Causes → 判断某功能是否真正解决问题。
+- 无上游时从 Stage 1 采集功能信息。
 
 ## Workflow (6 stages)
 
@@ -130,4 +144,5 @@ See `references/uncertainty_toolkit.md`.
 - Uncertainty toolkit: `references/uncertainty_toolkit.md`
 - Roadmap template: `assets/prioritized_feature_roadmap_template.md`
 - Scoring table template: `assets/feature_scoring_table_template.csv`
+- Worked example: `examples/example_prioritization.md`
 

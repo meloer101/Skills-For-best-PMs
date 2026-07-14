@@ -174,6 +174,46 @@ Post  →  Comment  (1:N)
 
 ---
 
+## 10. Impact Analysis（改动影响分析）
+
+> 程序员最怕的问题：「我改这一行会不会炸？」把核心模块的改动波及面显式列出来。基于依赖关系（谁调用了它），不是猜测。
+
+### If you modify: `[核心模块/函数]`
+
+**Directly affected（直接调用方）**:
+- `[caller1]` — [这条路径承载什么功能]
+- `[caller2]` — ...
+
+**Indirectly affected（二阶波及）**:
+- [下游功能/流程]
+
+**Blast radius**: 🔥 Wide / 🟡 Moderate / 🟢 Contained
+**Before changing**: [改动前必须核实/测试的点，如"跑通 X 流程的集成测试"]
+
+*(为 2–3 个最高风险模块各写一段)*
+
+---
+
+## 11. System Evolution（系统演化 / 软件考古）
+
+> 通过 git 历史推断系统的活跃区与稳定区。最常改动的文件 = 需求还在流动的地方；很少改的 = 已固化或被遗忘。
+
+**Most-changed files（近 N 次提交 / 近 N 个月）**:
+
+| File | 改动次数 | 推断 |
+|------|---------|------|
+| `feedService.ts` | 120 | 核心且仍在快速演化，改动需谨慎 + 沟通 |
+| `auth.ts` | 3 | 已稳定，改动往往意味着安全/登录相关，需重点评审 |
+
+**Active zones（活跃区）**: [哪些子系统还在高频变化]
+**Stable zones（稳定区）**: [哪些已固化]
+**Hotspot ∩ Complexity**: [既高频改动又高复杂度的文件 = 最危险，重点关注]
+
+> 取数：`git log --pretty=format: --name-only | sort | uniq -c | sort -rn | head -20`
+> 若无 git 历史（如 ZIP 分发），本节标注 `N/A — no git history available`。
+
+---
+
 ## Appendix: PM View *(optional)*
 
 > For non-engineering stakeholders. Focus on features, user flows, and business rules.

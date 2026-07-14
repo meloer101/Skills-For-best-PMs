@@ -73,17 +73,50 @@ For each key user action:
 4. **Note side effects** — are there async jobs, events, or notifications triggered?
 5. **Find the terminal state** — what is written to the database or returned to the client?
 
-Useful commands:
+Useful commands（覆盖多语言 / 多导入风格，别只认相对导入）:
 ```bash
 # Find where a route is defined
-grep -r "POST /api/posts" .
+grep -rn "POST /api/posts" .
 
-# Find all callers of a function
-grep -r "feedService" src/
+# Find all callers of a symbol
+grep -rn "feedService" src/
 
-# Find the most-imported files
-grep -rh "from './" src/ | sort | uniq -c | sort -rn | head -20
+# Most-imported files — JS/TS 相对导入 + alias 导入（@/、~/ 等）
+grep -rhoE "from ['\"][@~.][^'\"]+['\"]" src/ | sort | uniq -c | sort -rn | head -20
+
+# Python imports
+grep -rhoE "^(from|import) [a-zA-Z0-9_.]+" --include=*.py . | sort | uniq -c | sort -rn | head -20
+
+# Go imports
+grep -rhoE "\"[a-zA-Z0-9_./-]+\"" --include=*.go . | sort | uniq -c | sort -rn | head -20
+
+# 改动热点（System Evolution 用）
+git log --pretty=format: --name-only | sort | uniq -c | sort -rn | head -20
 ```
+
+> 若项目用 alias（`@/services/feed`）、绝对导入或 barrel file（`index.ts` re-export），单一 grep 会漏。跨几种模式各跑一遍再合并判断。
+
+---
+
+## Anti-Hallucination Rule（防幻觉，强制）
+
+这类报告最常见的失败模式是**编造精确数字**——声称 "Called by 7 files" 而其实没数过。
+
+- 写「Called by N files」「Calls M downstream modules」这类**具体数字前，必须实际跑一次 grep 计数**，用命令输出作为依据。
+- 没核实的量化断言，**标为 estimate**（如 "~high fan-in, not counted"）而不是给一个假装精确的数字。
+- 引用某个文件/函数/字段前，确认它真实存在（打开过或搜到过），不要凭命名惯例推测存在。
+- Core Module 的每条 "Why core" 证据，都要能对应到一条可复现的命令或一处代码位置。
+
+---
+
+## 大代码库降级策略（Large Codebase Fallback）
+
+当代码库过大（如 >10 万行 / >2000 文件）无法通读时，显式降级而不是假装读完：
+
+1. **优先级采样**：只深挖 entry points → routing → 高 fan-in 的 top 10–15 文件 → 核心数据模型；其余按目录级摘要。
+2. **声明覆盖范围**：报告开头写明"本次深度分析覆盖 X（模块/目录），未覆盖 Y"，不让读者误以为全库通读。
+3. **按业务域切**：若是 monorepo，选 1–2 个最相关的 package/service 深入，其余列清单。
+4. **宁可少而准**：Complexity Map 和 Core Modules 只列有证据支撑的，不为凑数硬填。
 
 ---
 

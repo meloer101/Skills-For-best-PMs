@@ -8,6 +8,19 @@ description: Build evidence-backed, multi-layer interview answer systems (surfac
 ## Overview
 Convert project evidence into a three-layer answer system that can withstand follow-up pressure. Prioritize decision-making, trade-offs, and credibility over polished but fragile narratives.
 
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 1–2 轮追问（缺面试题或缺项目材料时）；材料足够就直接产出答案体系，缺口用 `Assumption:` 标注。
+- **两档模式**：
+  - `Express（lite）`：用户给了题目 + 项目背景时，直接出 Layer 1–3 三层答案，压缩版按需给。
+  - `Full`（默认）：完整走 Difficulty 选择 + Evidence Map + 三层 + 压缩版本。
+
+## Upstream Inputs（串联位置）
+
+- **Project Intelligence Report**（项目理解引擎）：把报告里的 Business Scenarios / Core Modules / 关键决策作为 Evidence Map 的证据来源，避免临场编造。
+- **PRD / Roadmap / Metrics 报告**：如有，作为"决策 + 取舍 + 结果"的一手证据。
+- 无上游时从用户提供的项目材料提取。
+
 ## Workflow
 
 ### 1) Intake And Scope
@@ -68,3 +81,6 @@ Use `assets/interview_answer_template.md` as the output skeleton for each questi
 
 ## Reference Template
 Use `references/answer-system-template.md` for the canonical structure and checklists.
+
+## Worked Example
+See `examples/example_answer_system.md` for a full three-layer answer with follow-up defense.

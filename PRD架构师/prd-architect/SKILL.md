@@ -17,7 +17,27 @@ Use `assets/edge_case_matrix_template.md` and `assets/metrics_table_template.csv
 - Avoid verbosity: focus on system behavior, not narrative history.
 - Evidence tagging: mark assumptions and evidence for key claims.
 - Completeness check: ensure all core sections are filled.
-- Testable language: requirements must be verifiable.
+- **Testable language**: requirements must be verifiable. 禁止不可验证的形容词，改写成有阈值/有判定的语句：
+  - ❌ "系统应快速响应" → ✅ "核心接口 p95 < 200ms"
+  - ❌ "错误提示应友好" → ✅ "输入非法时在 100ms 内在字段下方展示具体原因，不清空已填内容"
+  - 每条功能需求都要能写成一个通过/失败明确的 Acceptance Criteria（Given/When/Then）。
+- **Non-goals first**: 定义功能时同步写明"本次不做什么"，这是 PRD 防范围蔓延最有价值的部分。
+
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 2–3 轮提问，每轮 3–5 题；到上限后带**显式假设**（`Assumption:`）直接产出 PRD 草稿，不再无限追问。
+- **两档模式**：
+  - `Express（lite）`：用户说"快点/先出草稿/lite"时，用一轮问答补齐最关键的 target user + 核心 FR，其余用 `Assumption:` 标注后直接出草稿。
+  - `Full`（默认）：走完整 6 个 Stage。
+- 允许用户回答"不知道"，把它转成 Open Questions，而不是卡住流程。
+
+## Upstream Inputs（串联上游）
+
+如果存在上游产出物，先读取并继承，不要从零重问：
+- **Prioritized Feature Roadmap**（功能排序引擎）：取头号功能项的 Key Driver / Main Risk 作为 Problem 与 Risks 输入。
+- **Problem Discovery Brief**（问题澄清引擎）：继承 Target User / JTBD / Success criteria，直接填入 Stage 1–2。
+- **User Insight Report**（用户洞察提炼）：Pain Points 作为 Problem 证据，Opportunity 作为范围参考。
+- 无上游时正常从 Stage 1 采集。
 
 ## Workflow (6 stages)
 
@@ -94,4 +114,5 @@ Before final output, run the checklist in `references/requirements_checklist.md`
 - PRD template: `assets/prd_template.md`
 - Edge case matrix: `assets/edge_case_matrix_template.md`
 - Metrics table: `assets/metrics_table_template.csv`
+- Worked example: `examples/example_prd.md`
 

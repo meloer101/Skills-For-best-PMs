@@ -17,6 +17,18 @@ Translate code into credible PM resume narratives by extracting reality, ranking
 - Output language and bullet count per project
 - Any real metrics or outcomes the user can claim
 
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 1–2 轮追问（缺 JD 或缺项目材料时）；材料齐全就直接进入 Pass 1，缺口写进 Missing Signals 而不是反复问。
+- **两档模式**：
+  - `Express（lite）`：用户只给代码 + JD 时，直接跑两 Pass 出 Mapping Summary + bullets，缺的真实指标标 `Assumption:` 或转为 Missing Signals。
+  - `Full`（默认）：完整两 Pass + gap 诊断。
+
+## Upstream Inputs（串联位置）
+
+- **Project Intelligence Report**（项目理解引擎）：把报告里的 Core Modules / Data Models / Business Scenarios / Domain Concepts 作为 Reality Extraction 的现成证据，省去重新读代码。System Role（Orchestrator 等）可直接支撑"系统思考者"叙事。
+- 无上游时自行从代码库提取。
+
 ## Workflow (Two-Pass, Mandatory)
 
 ### Pass 0 — Guardrails (do before analysis)
@@ -81,3 +93,5 @@ Produce a **Mapping Summary** section (persona, narrative, top signals, claim ma
 - `references/signal-framework.md` for signal taxonomy, PM translation table, and counterfactual framing rules.
 - `references/narrative-strategies.md` for narrative selection logic and bullet composition strategy.
 - `references/output-schema.md` for mapping summary and bullet templates.
+- `assets/resume_output_template.md` for the fill-in output skeleton.
+- `examples/example_resume_bullets.md` for a full worked example with engineer→PM bullet rewrites.

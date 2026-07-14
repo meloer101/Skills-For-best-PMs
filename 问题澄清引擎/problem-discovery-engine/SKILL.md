@@ -16,8 +16,20 @@ description: Systematic product discovery workflow that turns a fuzzy idea/featu
 - **Freeze solutions**：在 Stage 6 之前，不设计功能、不写 PRD、不讨论 UI 细节；一旦用户给 solution，先把它记录为“候选假设/干预手段”，然后继续问题探查。
 - **Evidence-first**：每个关键断言都标注证据来源（用户访谈/数据/工单/观察/推断），推断必须显式写明。
 - **Relentless why**：对“这是问题/需要/痛点”的陈述递归追问，直到出现可操作的 root cause 或关键约束。
-- **Small-batch questions**：每轮最多 5–8 个问题；给出建议回答格式，降低用户负担。
+- **Small-batch questions**：每轮 3–5 个问题；给出建议回答格式，降低用户负担。
 - **Hypothesis management**：把不确定性都写进 ledger；用置信度驱动下一步研究，而不是争论。
+
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 2–3 轮提问；到上限后带**显式假设**（`Assumption:`）直接产出 Brief 草稿 + Hypothesis Ledger，把没问清的转成 Open Questions，而不是继续追问。
+- **两档模式**：
+  - `Express（lite）`：用户说"先出草稿/快点"时，用一轮问答锁定 User + Situation + 一个失败信号，其余用假设标注后直接出 Brief。
+  - `Full`（默认）：走完整 6 个 Stage。
+
+## Upstream Inputs（串联位置）
+
+本 Skill 是产品工作流的**入口**，通常无上游。其产出物是下游的输入源：
+- `Problem Discovery Brief` → User Insight Synthesizer（交叉验证 Pain Points/JTBD）、Feature Prioritization、PRD Architect。
 
 ## Workflow (6 stages)
 
@@ -125,4 +137,11 @@ So I can ______
 - **Knowledge base**：访谈记录/产品文档/roadmap（用于证据与约束）
 
 只在能显著提升证据质量时才调用；否则优先推进“问对问题 + 形成可验证假设”。
+
+## Resources
+
+- 题库：`references/question_bank.md`
+- Brief 模板：`assets/problem_discovery_brief_template.md`
+- Ledger 模板：`assets/hypothesis_ledger_template.md`
+- Worked example：`examples/example_brief.md`
 

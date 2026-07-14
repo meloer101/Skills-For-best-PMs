@@ -1,6 +1,6 @@
 # Question Bank - PRD Architect
 
-Use small batches (5-8 questions). Prefer questions that change requirements or reveal missing scope.
+Use small batches (3-5 questions, at most 2-3 rounds). Prefer questions that change requirements or reveal missing scope.
 
 ## Stage 1
 

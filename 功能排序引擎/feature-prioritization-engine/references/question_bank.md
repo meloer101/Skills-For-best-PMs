@@ -1,6 +1,6 @@
 # Question Bank - Feature Prioritization Engine
 
-Use small batches (5-8 questions). Prefer questions that change scoring or invalidate assumptions.
+Use small batches (3-5 questions, at most 2-3 rounds). Prefer questions that change scoring or invalidate assumptions.
 
 ## Stage 1
 

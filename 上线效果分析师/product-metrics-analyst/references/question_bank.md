@@ -1,6 +1,6 @@
 # Question Bank - Product Metrics Analyst
 
-Use small batches (5-8 questions). Prefer questions that change conclusions or identify missing data.
+Use small batches (3-5 questions, at most 2-3 rounds). Prefer questions that change conclusions or identify missing data.
 
 ## Stage 1
 

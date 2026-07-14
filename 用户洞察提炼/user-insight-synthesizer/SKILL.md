@@ -18,7 +18,19 @@ description: Thematic analysis engine that transforms raw user data (interview t
 - **Minority tracking**：主流观点旁必须记录反例或少数声音，防止确认偏误。
 - **Signal vs Anecdote**：单人提及 = anecdote；3+ 独立来源 = signal；跨渠道重复 = strong signal。
 - **No premature solutions**：Stage 1–4 中不提功能设计；Opportunity 方向只在 Stage 5 提出，且仅为"机会方向"，不涉及具体实现。
-- **Small-batch questions**：每轮最多 5–8 个问题；优先问"能改变分析框架"的问题。
+- **Small-batch questions**：每轮 3–5 个问题；优先问"能改变分析框架"的问题。
+
+## 交互模式（提问经济学）
+
+- **轮次上限**：最多 2–3 轮澄清；数据齐全时可直接进入分析，把缺口写进 `Data Gaps` 而不是反复追问。
+- **两档模式**：
+  - `Express（lite）`：用户直接甩来一批原始数据时，先出"Top themes + Top 3 insights + 机会方向"的快报，未验证处标 `Confidence: Low`。
+  - `Full`（默认）：走完整 5 个 Stage 出完整 Report。
+
+## Upstream Inputs（串联位置）
+
+- **Problem Discovery Brief**（问题澄清引擎）：把 Brief 里的 Pain Points / JTBD 作为对照锚点——用真实用户数据交叉验证或推翻这些假设，而不是从零编码。
+- 其产出 `User Insight Report` → Feature Prioritization（Opportunity 作打分输入）、PRD Architect（作证据）。
 
 ## Workflow (5 stages)
 
@@ -149,3 +161,9 @@ Level 4 — Implication:  对产品决策意味着什么（so what）
 - **Knowledge base**：与 Problem Discovery Brief 中的 Pain Points / JTBD 做交叉验证
 
 只在能显著提升证据质量时才调用；否则优先推进"发现模式 + 输出 insight"。
+
+## Resources
+
+- 方法论 + 分阶段题库：`references/coding_guide.md`
+- Report 模板：`assets/user_insight_report_template.md`
+- Worked example：`examples/example_insight_report.md`
